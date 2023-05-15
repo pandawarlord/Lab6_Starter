@@ -24,6 +24,13 @@ function getRecipesFromStorage() {
   // A9. TODO - Complete the functionality as described in this function
   //           header. It is possible in only a single line, but should
   //           be no more than a few lines.
+  let balls = JSON.parse(localStorage.getItem('recipes'))
+  if(balls){
+    return balls;
+  }
+  else {
+    return [];
+  }
 }
 
 /**
@@ -35,10 +42,17 @@ function getRecipesFromStorage() {
  */
 function addRecipesToDocument(recipes) {
   // A10. TODO - Get a reference to the <main> element
+  let muc = document.querySelector('main')
   // A11. TODO - Loop through each of the recipes in the passed in array,
   //            create a <recipe-card> element for each one, and populate
   //            each <recipe-card> with that recipe data using element.data = ...
   //            Append each element to <main>
+  for(let i = 0, k = recipes.length; i < k; i++){
+    let eachRecipe = document.createElement('recipe-card');
+    let currRecipe = recipes[i];
+    eachRecipe.data = currRecipe;
+    muc.append(eachRecipe);
+  }
 }
 
 /**
